@@ -7,7 +7,7 @@ When building an R container, it's important to ensure that all the required pac
 This sample Dockerfile has three steps:
 
 - In the first step, we use the rocker/r-ver image to build an R environment and install any system dependencies required by the R packages.
-- In the second step, we add a new R package called my-r-package using the install2.r function. We then use the remotes::prune_installed() function to safely remove any unnecessary dependencies of the package, which will help reduce the size of the final image.
+- In the second step, we add a **fictional** R package called **my-r-package** using the install2.r function. We then use the remotes::prune_installed() function to safely remove any unnecessary dependencies of the package, which will help reduce the size of the final image.
 - In the third step, we copy the installed R packages from the second step to a smaller Alpine image. We also add the bash package using the apk package manager.
 
 ## Building

@@ -24,11 +24,11 @@ RUN install2.r --error \
     && Rscript -e "remotes::install_version('readr', '2.1.1')" \
     && Rscript -e "remotes::install_version('leaflet', '2.0.3')"
 
-# Step 2: Add an R package and safely remove its unnecessary dependencies
+# Step 2: Add an FICTIONAL R package named my-r-package and safely remove its unnecessary dependencies. You can utilize any package you want utilizing remotes and setting the specific version
 FROM r-base AS add-package
 
 RUN install2.r --error \
-    my-r-package \
+    my-r-package \ 
     && Rscript -e "remotes::prune_installed()"
 
 # Step 3: Copy the installed R packages to a smaller Alpine image
