@@ -1,6 +1,6 @@
 # r-minimal-2.0 aka R-Nimbus
 
-The fastest and most reliable way to build R-based containers so far!
+The fastest and most reliable way to build R-based containers.
 
 ## Introduction
 When building an R container, it's important to ensure that all the required packages and dependencies are available, as some packages may not be supported by Alpine. Additionally, some R packages may require a specific version of a package and may not require all of their dependencies. In this documentation, we'll cover how to create a container for an R package that relies on packages not supported by Alpine and for packages that need a specific version of a package without their dependencies.
