@@ -24,11 +24,18 @@ RUN install2.r --error \
     && Rscript -e "remotes::install_version('readr', '2.1.1')" \
     && Rscript -e "remotes::install_version('leaflet', '2.0.3')"
 
-# Step 2: Copy the installed R packages to a smaller Alpine image
+# Step 2: Add an R package and safely remove its unnecessary dependencies
+FROM r-base AS add-package
+
+RUN install2.r --error \
+    my-r-package \
+    && Rscript -e "remotes::prune_installed()"
+
+# Step 3: Copy the installed R packages to a smaller Alpine image
 FROM alpine:3.14
 
 RUN apk add --no-cache bash
 
-COPY --from=r-base /usr/local/lib/R/site-library /usr/local/lib/R/site-library
+COPY --from=add-package /usr/local/lib/R/site-library /usr/local/lib/R/site-library
 
 CMD ["R"]
